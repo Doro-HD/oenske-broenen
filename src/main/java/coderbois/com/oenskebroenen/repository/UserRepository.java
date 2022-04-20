@@ -3,14 +3,13 @@ package coderbois.com.oenskebroenen.repository;
 import coderbois.com.oenskebroenen.model.User;
 
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 
-public class LoadUsers {
+public class UserRepository {
 
     private JdbcConnector myConnector;
 
-    public LoadUsers(){
+    public UserRepository(){
         this.myConnector = new JdbcConnector();
     }
 
