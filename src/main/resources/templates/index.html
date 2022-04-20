@@ -6,12 +6,12 @@
 </head>
 <body>
 <div>
-    <form action="/" method="post">
+    <form th:object="${user}" action="/" method="post">
         <label class="form-label mt-10">Username</label>
-        <input name="username" type="text" class="form-control">
+        <input th:field="*{username}" name="username" type="text" class="form-control">
 
         <label class="form-label">Password</label>
-        <input name="password" type="text" class="form-control">
+        <input th:field="*{password}" name="password" type="text" class="form-control">
 
         <button type="submit" value="submit" class="btn btn-outline-dark mt-3 mb-3">login</button>
     </form>
