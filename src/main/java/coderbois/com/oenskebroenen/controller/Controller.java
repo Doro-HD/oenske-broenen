@@ -10,9 +10,6 @@ import java.util.ArrayList;
 @RestController
 public class Controller {
 
-
-
-
     @GetMapping("/index")
     public ArrayList<User> index(){
         LoadUsers myUsers = new LoadUsers();
