@@ -1,8 +1,6 @@
 package coderbois.com.oenskebroenen.repository;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class JdbcConnector {
 
@@ -20,7 +18,28 @@ public class JdbcConnector {
         }
     }
 
-    public Connection getConnection() {
-        return connection;
+    Statement getStatement() {
+        Statement statement;
+        try {
+            statement = this.connection.createStatement();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        return statement;
+    }
+
+    PreparedStatement getPreparedStatement(String sql) {
+        PreparedStatement preparedStatement;
+
+        try {
+            preparedStatement = this.connection.prepareStatement(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        return preparedStatement;
     }
 }
