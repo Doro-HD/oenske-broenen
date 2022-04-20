@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>index</title>
 </head>
 <body>
 <div>
-    <form th:object="${user}" action="/" method="post">
+    <form th:object="${user}" th:action="@{/login}" method="post">
         <label class="form-label mt-10">Username</label>
         <input th:field="*{username}" name="username" type="text" class="form-control">
 
