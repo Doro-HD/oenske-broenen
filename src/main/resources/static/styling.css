@@ -53,3 +53,14 @@
     width: 100%;
     margin-bottom: 20px;
 }
+
+.loginbox a {
+    text-decoration: none;
+    font-size: 12px;
+    line-height: 20px;
+    color: darkgray;
+}
+
+.loginbox a:hover {
+    color: #ffc107;
+}
