@@ -3,9 +3,13 @@ package coderbois.com.oenskebroenen.repository;
 import coderbois.com.oenskebroenen.model.User;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class UserRepository {
@@ -15,6 +19,8 @@ public class UserRepository {
     public UserRepository(){
         this.myConnector = new JdbcConnector();
     }
+
+
 
     public ArrayList<User> getAllUsers(){
         ArrayList<User> ourUsers = new ArrayList<>();
@@ -35,6 +41,25 @@ public class UserRepository {
 
     }
 
+    public void createUser(User user) {
+        try{
+
+            //prepared statement
+            PreparedStatement preparedStatement = myConnector.getPreparedStatement(
+                    "INSERT INTO users(username, user_password) VALUES (?, ?)");
+
+            //set attributter
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setString(2, user.getPassword());
+
+            //execute statement
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e){
+            System.out.println("noget gik galt - Create User");
+            e.printStackTrace();
+        }
+    }
 
     public User findUser(String userString){
         User myUser = null;

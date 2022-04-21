@@ -77,6 +77,27 @@ public class MainController {
         return htmlPageName;
     }
 
+    @GetMapping("/createUser")
+    public String createUser(Model model){
+        model.addAttribute("user", new User());
+        return "createUser";
+    }
+
+
+    @PostMapping("/createUser")
+    public String userCreated(@ModelAttribute("user") User user){
+
+
+        UserRepository UR = new UserRepository();
+        //laver ny user
+
+        //gemmer ny user
+        UR.createUser(user);
+
+        //retur til login skærmen
+        return "redirect:login";
+    }
+
 
     @GetMapping("/find-user")
     @ResponseBody

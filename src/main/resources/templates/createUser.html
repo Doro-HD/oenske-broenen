@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Creation</title>
+</head>
+<body>
+
+<div>
+    <form th:object="${user}"  method="post", th:action="@{/createUser}">
+        <label class="form-label mt-10">Username</label>
+        <input th:field="*{username}" name="createUsername" type="text" class="form-control">
+
+        <label class="form-label">Password</label>
+        <input th:field="*{password}" name="createPassword" type="text" class="form-control">
+
+        <button type="submit" value="submit" class="btn btn-outline-dark mt-3 mb-3">Create User</button>
+    </form>
+</div>
+
+</body>
+</html>
