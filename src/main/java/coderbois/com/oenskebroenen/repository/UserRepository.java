@@ -53,7 +53,8 @@ public class UserRepository {
             preparedStatement.executeUpdate();
 
         } catch (SQLException e){
-            System.out.println("noget gik galt - Create User");
+            System.out.println("Something went wrong in createUser");
+            //Todo: remove the print stack trace below when we move to production
             e.printStackTrace();
         }
     }
@@ -72,6 +73,7 @@ public class UserRepository {
             }
         }catch (Exception e) {
             System.out.println("Error in getting all users.");
+            //Todo: remove the print stack trace below when we move to production
             e.printStackTrace();
         }
         return myUser;
