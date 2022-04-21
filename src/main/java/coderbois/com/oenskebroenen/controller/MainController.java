@@ -35,7 +35,7 @@ public class MainController {
         if (cookie != null) {
             htmlPageName = "redirect:homepage";
         } else {
-            htmlPageName = "index";
+            htmlPageName = "login";
             model.addAttribute("user", new User());
         }
 
@@ -89,9 +89,19 @@ public class MainController {
     }
 
     @GetMapping("/createUser")
-    public String createUser(Model model){
+    public String createUser(Model model, HttpSession httpSession){
         model.addAttribute("user", new User());
-        return "createUser";
+        String htmlPageName;
+
+        Cookie cookie = (Cookie) httpSession.getAttribute("username");
+
+        if (cookie != null) {
+            htmlPageName = "homepage";
+        } else {
+            htmlPageName = "createUser";
+        }
+
+        return htmlPageName;
     }
 
     @PostMapping("/createUser")
