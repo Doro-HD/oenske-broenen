@@ -2,6 +2,7 @@ package coderbois.com.oenskebroenen.controller;
 
 import coderbois.com.oenskebroenen.model.User;
 import coderbois.com.oenskebroenen.service.UserService;
+import coderbois.com.oenskebroenen.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,9 +45,14 @@ public class MainController {
 
     @PostMapping("/login")
     public String loginPost(@ModelAttribute("user") User user, Model model, HttpSession httpSession){
-        Cookie cookie = new Cookie("username", user.getUsername());
-        httpSession.setAttribute("username", cookie);
+        User myUser = userService.findUserByUsername(user.getUsername());
+        if (myUser != null) {
+            if (myUser.getPassword().equals(user.getPassword())) {
+                Cookie cookie = new Cookie("username", user.getUsername());
+                httpSession.setAttribute("username", cookie);
+            }
 
+        }
         return "redirect:homepage";
     }
 
@@ -99,7 +105,10 @@ public class MainController {
     @PostMapping("/createUser")
     public String userCreated(@ModelAttribute("user") User user){
         //gemmer ny user
-        this.userService.createUser(user);
+
+        if (userService.findUserByUsername(user.getUsername()) == null) {
+            this.userService.createUser(user);
+        }
 
         //retur til login skærmen
         return "redirect:login";
