@@ -2,6 +2,7 @@ package coderbois.com.oenskebroenen.controller;
 
 import coderbois.com.oenskebroenen.model.User;
 import coderbois.com.oenskebroenen.service.UserService;
+import coderbois.com.oenskebroenen.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -74,5 +76,15 @@ public class MainController {
 
         return htmlPageName;
     }
+
+
+    @GetMapping("/find-user")
+    @ResponseBody
+    public User findUser () {
+        UserRepository myRep = new UserRepository();
+
+        return myRep.findUser("Joey Mo");
+    }
+
 }
 

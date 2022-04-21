@@ -4,6 +4,7 @@ import coderbois.com.oenskebroenen.model.User;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 @Repository
@@ -31,6 +32,27 @@ public class UserRepository {
             e.printStackTrace();
         }
         return ourUsers;
+
+    }
+
+
+    public User findUser(String userString){
+        User myUser = null;
+        try {
+            String sql = "SELECT * FROM users WHERE username = " + "\"" + userString + "\"";
+            ResultSet resultSet = this.myConnector.getStatement().executeQuery(sql);
+            while(resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String userName = resultSet.getString("username");
+                String password = resultSet.getString("user_password");
+                myUser = new User(id, userName, password);
+                System.out.println(myUser);
+            }
+        }catch (Exception e) {
+            System.out.println("Error in getting all users.");
+            e.printStackTrace();
+        }
+        return myUser;
 
     }
 
