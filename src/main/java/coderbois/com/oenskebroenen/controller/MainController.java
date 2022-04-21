@@ -51,10 +51,9 @@ public class MainController {
     }
 
     @GetMapping("/homepage")
-    public String homepage (HttpServletRequest httpServletRequest) {
+    public String homepage (HttpSession httpSession) {
         String htmlPageName;
 
-        HttpSession httpSession = httpServletRequest.getSession();
         Cookie cookie = (Cookie) httpSession.getAttribute("username");
 
         if (cookie != null) {
@@ -68,9 +67,12 @@ public class MainController {
 
     @GetMapping("/logout")
     public String logout(HttpSession httpSession) {
-        httpSession.invalidate();
+        Cookie cookie = (Cookie) httpSession.getAttribute("username");
+        if (cookie != null) {
+            httpSession.invalidate();
+        }
 
-        return "index";
+        return "redirect:/";
     }
 
     @GetMapping("/homepage/{wishlistId}")
