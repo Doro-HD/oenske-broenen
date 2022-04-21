@@ -70,7 +70,7 @@ public class MainController {
     public String logout(HttpSession httpSession) {
         httpSession.invalidate();
 
-        return "login";
+        return "index";
     }
 
     @GetMapping("/homepage/{wishlistId}")
