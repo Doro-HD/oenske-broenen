@@ -2,7 +2,6 @@ package coderbois.com.oenskebroenen.controller;
 
 import coderbois.com.oenskebroenen.model.User;
 import coderbois.com.oenskebroenen.service.UserService;
-import coderbois.com.oenskebroenen.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +18,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class MainController {
 
-    private UserService userService;
+    private final UserService userService;
 
     @Autowired
     public MainController(UserService userService) {
@@ -43,9 +42,6 @@ public class MainController {
             model.addAttribute("user", new User());
         }
 
-        UserService myWishService = new UserService();
-
-
         return htmlPageName;
     }
 
@@ -53,10 +49,6 @@ public class MainController {
     public String loginPost(@ModelAttribute("user") User user, Model model, HttpSession httpSession){
         Cookie cookie = new Cookie("username", user.getUsername());
         httpSession.setAttribute("username", cookie);
-
-        UserService myWishService = new UserService();
-
-        //System.out.println(user.getUsername() +" "+ user.getPassword());
 
         return "redirect:homepage";
     }
@@ -83,16 +75,10 @@ public class MainController {
         return "createUser";
     }
 
-
     @PostMapping("/createUser")
     public String userCreated(@ModelAttribute("user") User user){
-
-
-        UserRepository UR = new UserRepository();
-        //laver ny user
-
         //gemmer ny user
-        UR.createUser(user);
+        this.userService.createUser(user);
 
         //retur til login skærmen
         return "redirect:login";
@@ -102,9 +88,7 @@ public class MainController {
     @GetMapping("/find-user")
     @ResponseBody
     public User findUser () {
-        UserRepository myRep = new UserRepository();
-
-        return myRep.findUser("Joey Mo");
+        return this.userService.findUserByUsername("Joey Mo");
     }
 
 }

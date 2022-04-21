@@ -3,13 +3,10 @@ package coderbois.com.oenskebroenen.repository;
 import coderbois.com.oenskebroenen.model.User;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
-import java.util.List;
 
 @Repository
 public class UserRepository {

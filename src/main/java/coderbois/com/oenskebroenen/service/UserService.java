@@ -10,17 +10,23 @@ import java.util.ArrayList;
 @Service
 public class UserService {
 
-    private UserRepository myUsers;
+    private final UserRepository userRepository;
 
     @Autowired
     public UserService(){
-        this.myUsers = new UserRepository();
+        this.userRepository = new UserRepository();
     }
 
-
+    public void createUser(User user) {
+        this.userRepository.createUser(user);
+    }
 
     public ArrayList<User> getAllUsers() {
 
-        return this.myUsers.getAllUsers();
+        return this.userRepository.getAllUsers();
+    }
+
+    public User findUserByUsername(String username) {
+        return this.userRepository.findUser(username);
     }
 }
