@@ -2,13 +2,18 @@ package coderbois.com.oenskebroenen.service;
 
 import coderbois.com.oenskebroenen.model.User;
 import coderbois.com.oenskebroenen.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
-public class WishService {
+@Service
+public class UserService {
 
     private UserRepository myUsers;
-    public WishService(){
+
+    @Autowired
+    public UserService(){
         this.myUsers = new UserRepository();
     }
 

@@ -1,19 +1,19 @@
 package coderbois.com.oenskebroenen.repository;
 
 import coderbois.com.oenskebroenen.model.User;
+import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+@Repository
 public class UserRepository {
 
-    private JdbcConnector myConnector;
+    private final JdbcConnector myConnector;
 
     public UserRepository(){
         this.myConnector = new JdbcConnector();
     }
-
-
 
     public ArrayList<User> getAllUsers(){
         ArrayList<User> ourUsers = new ArrayList<>();
@@ -27,7 +27,8 @@ public class UserRepository {
                 ourUsers.add(new User(id, userName, password));
             }
         }catch (Exception e) {
-            System.out.println("Error in getting all users.");
+            //Todo: remove print stack trace when moving to production
+            e.printStackTrace();
         }
         return ourUsers;
 
