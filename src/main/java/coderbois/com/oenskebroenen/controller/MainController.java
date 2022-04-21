@@ -2,7 +2,9 @@ package coderbois.com.oenskebroenen.controller;
 
 import coderbois.com.oenskebroenen.model.User;
 import coderbois.com.oenskebroenen.service.UserService;
+import coderbois.com.oenskebroenen.repository.UserRepository;
 
+import coderbois.com.oenskebroenen.service.WishlistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,10 +18,12 @@ import javax.servlet.http.HttpSession;
 public class MainController {
 
     private final UserService userService;
+    private final WishlistService wishlistService;
 
     @Autowired
-    public MainController(UserService userService) {
+    public MainController(UserService userService, WishlistService wishlistService) {
         this.userService = userService;
+        this.wishlistService = wishlistService;
     }
 
     @GetMapping("/")
@@ -44,33 +48,44 @@ public class MainController {
 
     @PostMapping("/login")
     public String loginPost(@ModelAttribute("user") User user, Model model, HttpSession httpSession){
-        Cookie cookie = new Cookie("username", user.getUsername());
-        httpSession.setAttribute("username", cookie);
+        User myUser = userService.findUserByUsername(user.getUsername());
+        if (myUser != null) {
+            if (myUser.getPassword().equals(user.getPassword())) {
+                Cookie cookie = new Cookie("username", user.getUsername());
+                httpSession.setAttribute("username", cookie);
+            }
 
+        }
         return "redirect:homepage";
     }
 
-    @GetMapping("/homepage")
-    public String homepage (HttpServletRequest httpServletRequest) {
-        String htmlPageName;
+    @GetMapping("/logout")
+    public String logout(HttpSession httpSession) {
+        Cookie cookie = (Cookie) httpSession.getAttribute("username");
+        if (cookie != null) {
+            httpSession.invalidate();
+        }
 
-        HttpSession httpSession = httpServletRequest.getSession();
+        return "redirect:/";
+    }
+
+    @GetMapping("/homepage")
+    public String homepage (HttpSession httpSession, Model model) {
+        String htmlPageName;
+        User user;
+
         Cookie cookie = (Cookie) httpSession.getAttribute("username");
 
         if (cookie != null) {
             htmlPageName = "homepage";
+            user = this.userService.findUserByUsername(cookie.getValue());
+
+            model.addAttribute("wishlists", this.wishlistService.getUserWishlists(user.getId()));
         } else {
             htmlPageName = "redirect:/";
         }
 
         return htmlPageName;
-    }
-
-    @GetMapping("/logout")
-    public String logout(HttpSession httpSession) {
-        httpSession.invalidate();
-
-        return "login";
     }
 
     @GetMapping("/homepage/{wishlistId}")
@@ -107,7 +122,10 @@ public class MainController {
     @PostMapping("/createUser")
     public String userCreated(@ModelAttribute("user") User user){
         //gemmer ny user
-        this.userService.createUser(user);
+
+        if (userService.findUserByUsername(user.getUsername()) == null) {
+            this.userService.createUser(user);
+        }
 
         //retur til login skærmen
         return "redirect:login";
