@@ -28,7 +28,7 @@ public class WishlistRepository {
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
-                String name = resultSet.getString("name");
+                String name = resultSet.getString("wishlist_name");
                 String description = resultSet.getString("description");
 
                 Wishlist wishlist = new Wishlist(id, name, description);
