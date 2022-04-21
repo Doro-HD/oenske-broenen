@@ -6,10 +6,7 @@ import coderbois.com.oenskebroenen.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -58,6 +55,28 @@ public class MainController {
         String htmlPageName;
 
         HttpSession httpSession = httpServletRequest.getSession();
+        Cookie cookie = (Cookie) httpSession.getAttribute("username");
+
+        if (cookie != null) {
+            htmlPageName = "homepage";
+        } else {
+            htmlPageName = "redirect:/";
+        }
+
+        return htmlPageName;
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession httpSession) {
+        httpSession.invalidate();
+
+        return "login";
+    }
+
+    @GetMapping("/homepage/{wishlistId}")
+    public String wishList (@PathVariable("wishlistId") int wishlistId, HttpSession httpSession) {
+        String htmlPageName;
+
         Cookie cookie = (Cookie) httpSession.getAttribute("username");
 
         if (cookie != null) {
