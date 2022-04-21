@@ -4,6 +4,7 @@ import coderbois.com.oenskebroenen.model.User;
 import coderbois.com.oenskebroenen.service.UserService;
 import coderbois.com.oenskebroenen.repository.UserRepository;
 
+import coderbois.com.oenskebroenen.service.WishlistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,10 +18,12 @@ import javax.servlet.http.HttpSession;
 public class MainController {
 
     private final UserService userService;
+    private final WishlistService wishlistService;
 
     @Autowired
-    public MainController(UserService userService) {
+    public MainController(UserService userService, WishlistService wishlistService) {
         this.userService = userService;
+        this.wishlistService = wishlistService;
     }
 
     @GetMapping("/")
@@ -56,21 +59,6 @@ public class MainController {
         return "redirect:homepage";
     }
 
-    @GetMapping("/homepage")
-    public String homepage (HttpSession httpSession) {
-        String htmlPageName;
-
-        Cookie cookie = (Cookie) httpSession.getAttribute("username");
-
-        if (cookie != null) {
-            htmlPageName = "homepage";
-        } else {
-            htmlPageName = "redirect:/";
-        }
-
-        return htmlPageName;
-    }
-
     @GetMapping("/logout")
     public String logout(HttpSession httpSession) {
         Cookie cookie = (Cookie) httpSession.getAttribute("username");
@@ -79,6 +67,25 @@ public class MainController {
         }
 
         return "redirect:/";
+    }
+
+    @GetMapping("/homepage")
+    public String homepage (HttpSession httpSession, Model model) {
+        String htmlPageName;
+        User user;
+
+        Cookie cookie = (Cookie) httpSession.getAttribute("username");
+
+        if (cookie != null) {
+            htmlPageName = "homepage";
+            user = this.userService.findUserByUsername(cookie.getValue());
+
+            model.addAttribute("wishlists", this.wishlistService.getUserWishlists(user.getId()));
+        } else {
+            htmlPageName = "redirect:/";
+        }
+
+        return htmlPageName;
     }
 
     @GetMapping("/homepage/{wishlistId}")
