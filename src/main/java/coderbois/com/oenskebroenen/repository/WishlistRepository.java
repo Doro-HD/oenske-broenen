@@ -51,12 +51,12 @@ public class WishlistRepository {
         try{
 
             //prepared statement
-            PreparedStatement preparedStatement = jdbcConnector.getPreparedStatement("INSERT INTO wishlist(wishlist_name, description) VALUES (?, ?, ?");
+            PreparedStatement preparedStatement = jdbcConnector.getPreparedStatement("INSERT INTO wishlist(wishlist_name, description, user_id) VALUES (?, ?, ?");
 
             //set attributter
             preparedStatement.setString(1, wishlist.getName());
             preparedStatement.setString(2, wishlist.getDescription());
-            preparedStatement.setString(3, String.valueOf(wishlist.get));
+            preparedStatement.setString(3, String.valueOf(wishlist.getUserId()));
 
             //Execute statement
             preparedStatement.executeUpdate();
