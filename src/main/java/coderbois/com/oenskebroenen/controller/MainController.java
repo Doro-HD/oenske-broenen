@@ -50,7 +50,9 @@ public class MainController {
         if (myUser != null) {
             if (myUser.getPassword().equals(user.getPassword())) {
                 Cookie cookie = new Cookie("username", user.getUsername());
+                Cookie cookie2 = new Cookie("id", String.valueOf(myUser.getId()));
                 httpSession.setAttribute("username", cookie);
+                httpSession.setAttribute("id", cookie2);
             }
         }
 
@@ -130,11 +132,15 @@ public class MainController {
     }
 
 
-    @GetMapping("/find-user")
+    @GetMapping("/test")
     @ResponseBody
-    public User findUser () {
-        return this.userService.findUserByUsername("Joey Mo");
+    public Cookie findUser (HttpSession httpSession) {
+        Cookie cookie = (Cookie) httpSession.getAttribute("id");
+        return cookie;
     }
+
+
+
 
 }
 
