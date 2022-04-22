@@ -42,12 +42,7 @@ public class WishlistRepository {
         return wishlists;
     }
 
-
-
-
     public void createWishList(Wishlist wishlist){
-
-
         try{
 
             //prepared statement

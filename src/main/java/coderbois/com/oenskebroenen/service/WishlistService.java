@@ -18,7 +18,7 @@ public class WishlistService {
     }
 
     public void createWishlist(Wishlist wishlist, int userId) {
-
+        this.wishlistRepository.createWishList(wishlist);
     }
 
     public ArrayList<Wishlist> getUserWishlists(int userId) {
