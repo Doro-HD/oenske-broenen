@@ -7,17 +7,17 @@
 <div class="loginbox">
 
     <img th:src="@{/Avatar.png}" class="avatar">
-    <h1>Make New Account</h1>
+    <h1>Opret Ny Bruger</h1>
 
     <form th:object="${user}"  method="post", th:action="@{/createUser}">
-        <label class="form-label mt-10">Username</label>
-        <input th:field="*{username}" name="createUsername" type="text" class="form-control" placeholder="your name is ...">
+        <label class="form-label mt-10">Nyt Bruger</label>
+        <input th:field="*{username}" name="createUsername" type="text" class="form-control" placeholder="brugernavn ...">
 
-        <label class="form-label">Password</label>
-        <input th:field="*{password}" name="createPassword" type="password" class="form-control" placeholder="your password is ...">
+        <label class="form-label">Nyt Kodeord</label>
+        <input th:field="*{password}" name="createPassword" type="password" class="form-control" placeholder="kodeord ...">
 
-        <button type="submit" value="submit" class="btn btn-outline-danger mt-3 mb-3">Create User</button><br>
-        <a href="/login">Log In</a>
+        <button type="submit" value="submit" class="btn btn-outline-danger mt-3 mb-3">Opret Bruger</button><br>
+        <a href="/login">Log Ind</a>
     </form>
 </div>
 </body>

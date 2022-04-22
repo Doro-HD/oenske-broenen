@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head(title=('Ønskebrønden Ny Ønskeseddel'))">
+</head>
+<body>
+
+<h1>Lav din nye ønskeseddel!</h1>
+<form th:object="${wishlist}"  method="post", th:action="@{/getWishlist}">
+    <label class="form-label mt-10">Ønskeseddel Navn</label>
+    <input th:field="*{name}" name="CreateWishlistName" type="text" class="form-control" placeholder="navn på ønskeseddel">
+
+    <label class="form-label">Beskrivelse</label>
+    <input th:field="*{description}" name="createDescription" type="text" class="form-control" placeholder="kort beskrivelse af din ønskeseddel">
+
+    <button type="submit" value="submit" class="btn btn-outline-danger mt-3 mb-3">Opret Ønskeseddel</button><br>
+    <a href="/homepage">Tilbage til forside</a>
+</form>
+</body>
+</html>

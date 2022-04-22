@@ -5,17 +5,17 @@
 <body class="loginbody">
     <div class="loginbox">
         <img th:src="@{/Avatar.png}" class="avatar">
-        <h1>Login Here</h1>
+        <h1>Log Ind Her</h1>
         <form th:object="${user}" th:action="@{/login}" method="post">
-            <label class="form-label mt-10">Username</label>
-            <input th:field="*{username}" name="username" type="text" class="form-control" placeholder="username here ...">
+            <label class="form-label mt-10">Brugernavn</label>
+            <input th:field="*{username}" name="username" type="text" class="form-control" placeholder="exempel@test.dk ...">
 
-            <label class="form-label">Password</label>
-            <input th:field="*{password}" name="password" type="password" class="form-control" placeholder="password here ...">
+            <label class="form-label">Kodeord</label>
+            <input th:field="*{password}" name="password" type="password" class="form-control" placeholder="eksempel123 ...">
 
-            <button type="submit" value="submit" class="btn btn-outline-danger mt-3 mb-3">login</button><br>
+            <button type="submit" value="submit" class="btn btn-outline-danger mt-3 mb-3">Log Ind</button><br>
 
-            <a href="/createUser">Don't have an account?</a>
+            <a href="/createUser">Opret Ny Bruger?</a>
         </form>
     </div>
 </body>
