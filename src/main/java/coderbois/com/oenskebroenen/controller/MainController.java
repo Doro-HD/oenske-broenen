@@ -2,7 +2,6 @@ package coderbois.com.oenskebroenen.controller;
 
 import coderbois.com.oenskebroenen.model.User;
 import coderbois.com.oenskebroenen.service.UserService;
-import coderbois.com.oenskebroenen.repository.UserRepository;
 
 import coderbois.com.oenskebroenen.service.WishlistService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -54,8 +52,8 @@ public class MainController {
                 Cookie cookie = new Cookie("username", user.getUsername());
                 httpSession.setAttribute("username", cookie);
             }
-
         }
+
         return "redirect:homepage";
     }
 
