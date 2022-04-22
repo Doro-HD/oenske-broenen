@@ -42,7 +42,7 @@ public class UserRepository {
         try{
 
             //prepared statement
-            PreparedStatement preparedStatement = myConnector.getPreparedStatement(
+            PreparedStatement preparedStatement = this.myConnector.getPreparedStatement(
                     "INSERT INTO users(username, user_password) VALUES (?, ?)");
 
             //set attributter

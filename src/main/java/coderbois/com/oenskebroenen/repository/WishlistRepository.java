@@ -12,7 +12,7 @@ import java.util.ArrayList;
 @Repository
 public class WishlistRepository {
 
-    private JdbcConnector jdbcConnector;
+    private final JdbcConnector jdbcConnector;
 
     public WishlistRepository() {
         this.jdbcConnector = new JdbcConnector();
