@@ -6,6 +6,8 @@ public class Wishlist {
       private String description;
       private int userId;
 
+
+
       public Wishlist(){
 
       }
@@ -54,4 +56,5 @@ public class Wishlist {
       public void setDescription(String description) {
             this.description = description;
       }
+
 }
