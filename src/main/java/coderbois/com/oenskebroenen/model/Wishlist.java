@@ -10,7 +10,13 @@ public class Wishlist {
 
       }
 
-      public Wishlist(int id, String name, String description, int userId){
+      public Wishlist(String name, String description, int userId){
+            this.name = name;
+            this.description = description;
+            this.userId = userId;
+      }
+
+      public Wishlist(int id,String name, String description, int userId){
             this.id = id;
             this.name = name;
             this.description = description;
