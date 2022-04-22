@@ -2,8 +2,8 @@ package coderbois.com.oenskebroenen.controller;
 
 import coderbois.com.oenskebroenen.model.User;
 import coderbois.com.oenskebroenen.service.UserService;
-
 import coderbois.com.oenskebroenen.service.WishlistService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,10 +49,11 @@ public class MainController {
         User myUser = userService.findUserByUsername(user.getUsername());
         if (myUser != null) {
             if (myUser.getPassword().equals(user.getPassword())) {
-                Cookie cookie = new Cookie("username", user.getUsername());
-                Cookie cookie2 = new Cookie("id", String.valueOf(myUser.getId()));
-                httpSession.setAttribute("username", cookie);
-                httpSession.setAttribute("id", cookie2);
+                Cookie cookieUsername = new Cookie("username", user.getUsername());
+                Cookie cookieUserId = new Cookie("id", String.valueOf(myUser.getId()));
+
+                httpSession.setAttribute("username", cookieUsername);
+                httpSession.setAttribute("id", cookieUserId);
             }
         }
 

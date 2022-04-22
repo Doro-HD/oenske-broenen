@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Ønskebrønen Forside</title>
-</head>
-<body>
-<h1>Du er nu på forsiden</h1>
-<p th:text="${wishlists}"></p>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Ønskebrønen Forside</title>
+    </head>
+    <body>
+    <h1>Dine ønskesedler</h1>
+    <ul>
+        <li th:each="wishlist : ${wishlists}">
+            <a th:text="${wishlist.name}" th:href="@{/homepage/{id}(id=${wishlist.id})}"></a>
+        </li>
+    </ul>
+    </body>
 </html>
