@@ -133,6 +133,60 @@ public class MainController {
     }
 
 
+
+
+
+
+
+    @GetMapping("/homepage/addwishlist")
+    public String getWishlist(Model model, HttpSession httpSession){
+        Cookie cookie = (Cookie) httpSession.getAttribute("username");
+
+        if (cookie != null) {
+
+        } else {
+            model.addAttribute("user", new User());
+        }
+
+        return "redirect:homepage";
+    }
+
+    @PostMapping("/homepage/addwishlist")
+    public String makeWishlist(@ModelAttribute("user") User user, Model model, HttpSession httpSession){
+        User myUser = userService.findUserByUsername(user.getUsername());
+        if (myUser != null) {
+            if (myUser.getPassword().equals(user.getPassword())) {
+                Cookie cookie = new Cookie("username", user.getUsername());
+                Cookie cookie2 = new Cookie("id", String.valueOf(myUser.getId()));
+                httpSession.setAttribute("username", cookie);
+                httpSession.setAttribute("id", cookie2);
+            }
+        }
+
+        return "redirect:homepage";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     @GetMapping("/test")
     @ResponseBody
     public Cookie findUser (HttpSession httpSession) {
