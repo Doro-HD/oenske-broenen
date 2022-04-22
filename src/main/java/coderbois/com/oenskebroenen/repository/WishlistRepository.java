@@ -46,7 +46,7 @@ public class WishlistRepository {
         try{
 
             //prepared statement
-            PreparedStatement preparedStatement = jdbcConnector.getPreparedStatement("INSERT INTO wishlist(wishlist_name, description, user_id) VALUES (?, ?, ?)");
+            PreparedStatement preparedStatement = jdbcConnector.getPreparedStatement("INSERT INTO wishlists(wishlist_name, description, user_id) VALUES (?, ?, ?)");
 
             //set attributter
             preparedStatement.setString(1, wishlist.getName());
