@@ -1,6 +1,7 @@
 package coderbois.com.oenskebroenen.controller;
 
 import coderbois.com.oenskebroenen.model.User;
+import coderbois.com.oenskebroenen.model.Wishlist;
 import coderbois.com.oenskebroenen.service.UserService;
 import coderbois.com.oenskebroenen.service.WishlistService;
 
@@ -131,6 +132,61 @@ public class MainController {
         //retur til login skærmen
         return "redirect:login";
     }
+
+
+
+
+
+
+
+    @GetMapping("/addwishlist")
+    public String getWishlist(Model model, HttpSession httpSession){
+        String htmlPageName;
+        Cookie cookie = (Cookie) httpSession.getAttribute("username");
+        model.addAttribute("wishlist", new Wishlist());
+
+        if (cookie != null) {
+            htmlPageName = "addwishlist";
+        } else {
+            htmlPageName = "login";
+        }
+        return htmlPageName;
+    }
+
+    @PostMapping("/addwishlist")
+    public String makeWishlist(@ModelAttribute("wishlist") Wishlist user, Model model, HttpSession httpSession){
+        User myUser = userService.findUserByUsername(user.getUsername());
+        if (myUser != null) {
+            if (myUser.getPassword().equals(user.getPassword())) {
+                Cookie cookie = new Cookie("username", user.getUsername());
+                Cookie cookie2 = new Cookie("id", String.valueOf(myUser.getId()));
+                httpSession.setAttribute("username", cookie);
+                httpSession.setAttribute("id", cookie2);
+            }
+        }
+
+        return "redirect:homepage";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     @GetMapping("/test")
