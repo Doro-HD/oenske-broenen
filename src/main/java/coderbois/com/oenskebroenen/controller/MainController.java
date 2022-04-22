@@ -148,7 +148,7 @@ public class MainController {
     }
 
     @PostMapping("/addwishlist")
-    public String makeWishlist(@ModelAttribute("wishlist") Wishlist wishlist, Model model, HttpSession httpSession){
+    public String makeWishlist(@ModelAttribute("wishlist") Wishlist wishlist, Model model, HttpSession httpSession) {
         Cookie cookie = (Cookie) httpSession.getAttribute("id");
 
         String userId = cookie.getValue();

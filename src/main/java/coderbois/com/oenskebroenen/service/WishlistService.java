@@ -18,6 +18,7 @@ public class WishlistService {
     }
 
     public void createWishlist(Wishlist wishlist, int userId) {
+        wishlist.setUserId(userId);
         this.wishlistRepository.createWishList(wishlist);
     }
 

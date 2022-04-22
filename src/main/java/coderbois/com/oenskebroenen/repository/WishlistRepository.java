@@ -56,12 +56,10 @@ public class WishlistRepository {
             //Execute statement
             preparedStatement.executeUpdate();
 
-        }catch (SQLException e){
+        } catch (SQLException e){
 
             System.out.println("Something went wrong in create Wishlist");
             e.printStackTrace();
-
-
         }
     }
 
