@@ -4,6 +4,7 @@ import coderbois.com.oenskebroenen.model.Wishlist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -31,7 +32,7 @@ public class WishlistRepository {
                 String name = resultSet.getString("wishlist_name");
                 String description = resultSet.getString("description");
 
-                Wishlist wishlist = new Wishlist(id, name, description);
+                Wishlist wishlist = new Wishlist(id, name, description, userId);
                 wishlists.add(wishlist);
             }
         } catch (SQLException e) {
@@ -40,4 +41,34 @@ public class WishlistRepository {
 
         return wishlists;
     }
+
+
+
+
+    public void createWishList(Wishlist wishlist){
+
+
+        try{
+
+            //prepared statement
+            PreparedStatement preparedStatement = jdbcConnector.getPreparedStatement("INSERT INTO wishlist(wishlist_name, description) VALUES (?, ?, ?");
+
+            //set attributter
+            preparedStatement.setString(1, wishlist.getName());
+            preparedStatement.setString(2, wishlist.getDescription());
+            preparedStatement.setString(3, String.valueOf(wishlist.get));
+
+            //Execute statement
+            preparedStatement.executeUpdate();
+
+        }catch (SQLException e){
+
+            System.out.println("Something went wrong in create Wishlist");
+            e.printStackTrace();
+
+
+        }
+    }
+
+
 }
