@@ -2,6 +2,7 @@ package coderbois.com.oenskebroenen.controller;
 
 import coderbois.com.oenskebroenen.model.User;
 import coderbois.com.oenskebroenen.model.Wishlist;
+import coderbois.com.oenskebroenen.repository.WishlistRepository;
 import coderbois.com.oenskebroenen.service.UserService;
 import coderbois.com.oenskebroenen.service.WishlistService;
 
@@ -159,9 +160,10 @@ public class MainController {
 
     @GetMapping("/test")
     @ResponseBody
-    public Cookie findUser (HttpSession httpSession) {
-        Cookie cookie = (Cookie) httpSession.getAttribute("id");
-        return cookie;
+    public String findUser () {
+        WishlistRepository wr = new WishlistRepository();
+        wr.createWishList(new Wishlist(1, "test", "MEGA TEST BASED on AMOGUS 2?!?!?!?!?!?!?!?!?", 11));
+        return "based";
     }
 
 
