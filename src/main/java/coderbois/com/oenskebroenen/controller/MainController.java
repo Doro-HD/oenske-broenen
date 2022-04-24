@@ -52,9 +52,9 @@ public class MainController {
         User myUser = userService.findUserByUsername(user.getUsername());
         if (myUser != null) {
             PasswordManager passwordManager = new PasswordManager();
-            boolean isPasswordValidated = passwordManager.validatePassword(user.getPassword(), myUser.getPassword());
+            boolean isPasswordValid = passwordManager.validatePassword(user.getPassword(), myUser.getPassword());
 
-            if (isPasswordValidated) {
+            if (isPasswordValid) {
                 Cookie cookie = new Cookie("username", myUser.getUsername());
                 httpSession.setAttribute("username", cookie);
             }
