@@ -9,7 +9,7 @@
 
     <h1>Opret Nyt ønske</h1>
 
-    <form th:object="${wish}"  method="post", th:action="@{createWish}">
+    <form th:object="${wish}"  method="post", th:action="@{/}">
         <label class="form-label mt-10">Navn på det du ønsker dig</label>
         <input th:field="*{name}" name="createName" type="text" class="form-control" placeholder="ønskets navn">
 
