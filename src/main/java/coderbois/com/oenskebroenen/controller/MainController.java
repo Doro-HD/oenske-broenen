@@ -119,6 +119,7 @@ public class MainController {
         Cookie cookie = (Cookie) httpSession.getAttribute("username");
 
         if (cookie != null) {
+            model.addAttribute("wishlistId", wishlistId);
             model.addAttribute("wish", new Wish());
             htmlPageName = "createWish";
         } else {
