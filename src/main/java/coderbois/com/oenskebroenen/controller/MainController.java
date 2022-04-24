@@ -133,7 +133,7 @@ public class MainController {
     public String createWishPost(@PathVariable("wishlistId") int wishlistId, @ModelAttribute("wish") Wish wish){
         this.wishService.createWish(wish);
 
-        return "redirect:homepage/" + wishlistId;
+        return "redirect:/homepage/" + wishlistId;
     }
 
     @GetMapping("/createUser")
