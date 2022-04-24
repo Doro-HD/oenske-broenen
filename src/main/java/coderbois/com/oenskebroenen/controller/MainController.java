@@ -103,6 +103,7 @@ public class MainController {
 
         if (cookie != null) {
             htmlPageName = "wishlist";
+            model.addAttribute("wishlistId", wishlistId);
             model.addAttribute("wishes", this.wishService.findWishesByWishlistId(wishlistId));
         } else {
             htmlPageName = "redirect:/";
@@ -111,8 +112,8 @@ public class MainController {
         return htmlPageName;
     }
 
-    @GetMapping("//homepage/{wishlistId}/createWish")
-    public String createWish(Model model, HttpSession httpSession){
+    @GetMapping("/homepage/{wishlistId}/createWish")
+    public String createWish(@PathVariable("wishlistId") int wishlistId,Model model, HttpSession httpSession){
         String htmlPageName;
 
         Cookie cookie = (Cookie) httpSession.getAttribute("username");
@@ -128,18 +129,10 @@ public class MainController {
     }
 
     @PostMapping("/homepage/{wishlistId}/createWish")
-    public String createWishPost(@PathVariable("wishlistId") int wishlistId, @ModelAttribute("wish") Wish wish, HttpSession httpSession){
-        String htmlPageName;
+    public String createWishPost(@PathVariable("wishlistId") int wishlistId, @ModelAttribute("wish") Wish wish){
+        this.wishService.createWish(wish);
 
-        Cookie cookie = (Cookie) httpSession.getAttribute("username");
-
-        if (cookie != null) {
-            htmlPageName = "redirect:homepage/" + wishlistId;
-        } else {
-            htmlPageName = "login";
-        }
-
-        return htmlPageName;
+        return "redirect:homepage/" + wishlistId;
     }
 
     @GetMapping("/createUser")

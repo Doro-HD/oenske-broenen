@@ -8,6 +8,6 @@
   <ul>
       <li th:each="wish : ${wishes}" th:text="${wish.name}"></li>
   </ul>
-  <a th:href="@{createWish}">Tilføj et ny ønske til din seddel<button></button></a>
+  <a th:href="@{{id}/createWish(id=${wishlistId})}">Tilføj et ny ønske til din seddel<button></button></a>
 </body>
 </html>
