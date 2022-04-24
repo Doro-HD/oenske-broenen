@@ -15,6 +15,11 @@ public class Wish {
         this.wishlistId = wishlistId;
     }
 
+    public Wish(int id, String name, String description, double price, int wishlistId) {
+        this(name, description, price, wishlistId);
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }

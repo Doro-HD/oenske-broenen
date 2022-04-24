@@ -5,6 +5,8 @@ import coderbois.com.oenskebroenen.repository.WishRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+
 @Service
 public class WishService {
 
@@ -19,7 +21,7 @@ public class WishService {
         this.wishRepository.createWish(wish);
     }
 
-    public void findWishesByWishlistId(int id) {
-        this.wishRepository.findWishesByWishlistId(id);
+    public ArrayList<Wish> findWishesByWishlistId(int id) {
+        return this.wishRepository.findWishesByWishlistId(id);
     }
 }

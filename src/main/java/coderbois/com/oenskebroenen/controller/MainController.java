@@ -4,6 +4,7 @@ import coderbois.com.oenskebroenen.model.User;
 import coderbois.com.oenskebroenen.model.Wishlist;
 import coderbois.com.oenskebroenen.repository.WishlistRepository;
 import coderbois.com.oenskebroenen.service.UserService;
+import coderbois.com.oenskebroenen.service.WishService;
 import coderbois.com.oenskebroenen.service.WishlistService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +20,13 @@ public class MainController {
 
     private final UserService userService;
     private final WishlistService wishlistService;
+    private final WishService wishService;
 
     @Autowired
-    public MainController(UserService userService, WishlistService wishlistService) {
+    public MainController(UserService userService, WishlistService wishlistService, WishService wishService) {
         this.userService = userService;
         this.wishlistService = wishlistService;
+        this.wishService = wishService;
     }
 
     @GetMapping("/")
@@ -92,13 +95,14 @@ public class MainController {
     }
 
     @GetMapping("/homepage/{wishlistId}")
-    public String wishList (@PathVariable("wishlistId") int wishlistId, HttpSession httpSession) {
+    public String wishList (@PathVariable("wishlistId") int wishlistId, HttpSession httpSession, Model model) {
         String htmlPageName;
 
         Cookie cookie = (Cookie) httpSession.getAttribute("username");
 
         if (cookie != null) {
-            htmlPageName = "homepage";
+            htmlPageName = "wishlist";
+            model.addAttribute("wishes", this.wishService.findWishesByWishlistId(wishlistId));
         } else {
             htmlPageName = "redirect:/";
         }
