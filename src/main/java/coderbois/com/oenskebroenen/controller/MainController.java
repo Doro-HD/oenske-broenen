@@ -1,6 +1,7 @@
 package coderbois.com.oenskebroenen.controller;
 
 import coderbois.com.oenskebroenen.model.User;
+import coderbois.com.oenskebroenen.security.PasswordManager;
 import coderbois.com.oenskebroenen.service.UserService;
 import coderbois.com.oenskebroenen.repository.UserRepository;
 
@@ -50,8 +51,11 @@ public class MainController {
     public String loginPost(@ModelAttribute("user") User user, Model model, HttpSession httpSession){
         User myUser = userService.findUserByUsername(user.getUsername());
         if (myUser != null) {
-            if (myUser.getPassword().equals(user.getPassword())) {
-                Cookie cookie = new Cookie("username", user.getUsername());
+            PasswordManager passwordManager = new PasswordManager();
+            boolean isPasswordValidated = passwordManager.validatePassword(user.getPassword(), myUser.getPassword());
+
+            if (isPasswordValidated) {
+                Cookie cookie = new Cookie("username", myUser.getUsername());
                 httpSession.setAttribute("username", cookie);
             }
 

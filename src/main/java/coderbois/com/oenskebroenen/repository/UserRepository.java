@@ -70,7 +70,7 @@ public class UserRepository {
                 myUser = new User(id, userName, password);
                 System.out.println(myUser);
             }
-        }catch (Exception e) {
+        }catch (SQLException e) {
             System.out.println("Error in getting all users.");
             e.printStackTrace();
         }
