@@ -1,6 +1,7 @@
 package coderbois.com.oenskebroenen.controller;
 
 import coderbois.com.oenskebroenen.model.User;
+import coderbois.com.oenskebroenen.model.Wish;
 import coderbois.com.oenskebroenen.model.Wishlist;
 import coderbois.com.oenskebroenen.repository.WishlistRepository;
 import coderbois.com.oenskebroenen.service.UserService;
@@ -105,6 +106,37 @@ public class MainController {
             model.addAttribute("wishes", this.wishService.findWishesByWishlistId(wishlistId));
         } else {
             htmlPageName = "redirect:/";
+        }
+
+        return htmlPageName;
+    }
+
+    @GetMapping("//homepage/{wishlistId}/createWish")
+    public String createWish(Model model, HttpSession httpSession){
+        String htmlPageName;
+
+        Cookie cookie = (Cookie) httpSession.getAttribute("username");
+
+        if (cookie != null) {
+            model.addAttribute("wish", new Wish());
+            htmlPageName = "createWish";
+        } else {
+            htmlPageName = "login";
+        }
+
+        return htmlPageName;
+    }
+
+    @PostMapping("/homepage/{wishlistId}/createWish")
+    public String createWishPost(@PathVariable("wishlistId") int wishlistId, @ModelAttribute("wish") Wish wish, HttpSession httpSession){
+        String htmlPageName;
+
+        Cookie cookie = (Cookie) httpSession.getAttribute("username");
+
+        if (cookie != null) {
+            htmlPageName = "redirect:homepage/" + wishlistId;
+        } else {
+            htmlPageName = "login";
         }
 
         return htmlPageName;

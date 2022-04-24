@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>wishlist</title>
@@ -8,5 +8,6 @@
   <ul>
       <li th:each="wish : ${wishes}" th:text="${wish.name}"></li>
   </ul>
+  <a th:href="@{/createWish}"><button></button></a>
 </body>
 </html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body class="createbody">
+<div class="loginbox">
+
+    <h1>Opret Nyt ønske</h1>
+
+    <form th:object="${wish}"  method="post", th:action="@{/createWish}">
+        <label class="form-label mt-10">Navn på det du ønsker dig</label>
+        <input th:field="*{name}" name="createName" type="text" class="form-control" placeholder="ønskets navn">
+
+        <label class="form-label">En beskrivelse af det du ønsker dig</label>
+        <input th:field="*{description}" name="createDescription" type="text" class="form-control" placeholder="Beskrivelse">
+
+        <label class="form-label mt-10">Prisen på det du ønsker</label>
+        <input th:field="*{price}" name="createPrice" type="number" class="form-control" placeholder="prisen på dit ønske">
+
+        <button type="submit" value="submit" class="btn btn-outline-danger mt-3 mb-3">Opret dit ønske</button><br>
+        <a href="/login">Opret</a>
+    </form>
+</div>
+</body>
+</html>

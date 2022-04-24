@@ -8,6 +8,9 @@ public class Wish {
     private double price;
     private int wishlistId;
 
+    public Wish() {
+    }
+
     public Wish(String name, String description, double price, int wishlistId) {
         this.name = name;
         this.description = description;
