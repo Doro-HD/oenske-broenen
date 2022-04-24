@@ -11,10 +11,10 @@ import java.util.ArrayList;
 @Repository
 public class UserRepository {
 
-    private final JdbcConnector myConnector;
+    private final JdbcConnector jdbcConnector;
 
     public UserRepository(){
-        this.myConnector = new JdbcConnector();
+        this.jdbcConnector = new JdbcConnector();
     }
 
 
@@ -23,7 +23,7 @@ public class UserRepository {
         ArrayList<User> ourUsers = new ArrayList<>();
         try {
             String sql = "SELECT * FROM users";
-            ResultSet resultSet = this.myConnector.getStatement().executeQuery(sql);
+            ResultSet resultSet = this.jdbcConnector.getStatement().executeQuery(sql);
             while (resultSet.next()){
                 int id = resultSet.getInt("id");
                 String userName = resultSet.getString("username");
@@ -42,7 +42,7 @@ public class UserRepository {
         try{
 
             //prepared statement
-            PreparedStatement preparedStatement = this.myConnector.getPreparedStatement(
+            PreparedStatement preparedStatement = this.jdbcConnector.getPreparedStatement(
                     "INSERT INTO users(username, user_password) VALUES (?, ?)");
 
             //set attributter
@@ -63,7 +63,7 @@ public class UserRepository {
         User myUser = null;
         try {
             String sql = "SELECT * FROM users WHERE username = " + "\"" + userString + "\"";
-            ResultSet resultSet = this.myConnector.getStatement().executeQuery(sql);
+            ResultSet resultSet = this.jdbcConnector.getStatement().executeQuery(sql);
             while(resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String userName = resultSet.getString("username");
