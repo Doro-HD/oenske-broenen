@@ -6,6 +6,7 @@ public class JdbcConnector {
 
     private Connection connection;
 
+
     public JdbcConnector() {
         String url = System.getenv("db_url");
         String userName = System.getenv("db_username");
@@ -13,7 +14,12 @@ public class JdbcConnector {
 
         try {
             this.connection = DriverManager.getConnection(url, userName, password);
+
+            Statement statement = this.connection.createStatement();
+            statement.executeQuery("/* ping */ SELECT 1");
+
         } catch (SQLException e) {
+            System.out.println("Forbindelse fejlede");
             e.printStackTrace();
         }
     }
