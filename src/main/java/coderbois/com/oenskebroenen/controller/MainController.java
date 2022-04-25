@@ -41,7 +41,7 @@ public class MainController {
     @GetMapping("/login")
     public String loginGet(Model model, HttpSession httpSession){
         String htmlPageName;
-        Cookie cookie = (Cookie) httpSession.getAttribute("username");
+        Cookie cookie = (Cookie) httpSession.getAttribute("id");
 
         if (cookie != null) {
             htmlPageName = "redirect:homepage";
@@ -61,8 +61,6 @@ public class MainController {
             boolean isPasswordValid = passwordManager.validatePassword(user.getPassword(), myUser.getPassword());
 
             if (isPasswordValid) {
-                Cookie cookie = new Cookie("username", myUser.getUsername());
-                httpSession.setAttribute("username", cookie);
                 Cookie cookieUserId = new Cookie("id", String.valueOf(myUser.getId()));
                 httpSession.setAttribute("id", cookieUserId);
             }
@@ -73,24 +71,23 @@ public class MainController {
 
     @GetMapping("/logout")
     public String logout(HttpSession httpSession) {
-        Cookie cookie = (Cookie) httpSession.getAttribute("username");
+        Cookie cookie = (Cookie) httpSession.getAttribute("id");
         if (cookie != null) {
             httpSession.invalidate();
         }
 
         return "redirect:/";
     }
-
     @GetMapping("/homepage")
     public String homepage (HttpSession httpSession, Model model) {
         String htmlPageName;
         User user;
 
-        Cookie cookie = (Cookie) httpSession.getAttribute("username");
+        Cookie cookie = (Cookie) httpSession.getAttribute("id");
 
         if (cookie != null) {
             htmlPageName = "homepage";
-            user = this.userService.findUserByUsername(cookie.getValue());
+            user = this.userService.findUserById(cookie.getValue());
 
             model.addAttribute("wishlists", this.wishlistService.getUserWishlists(user.getId()));
         } else {
@@ -104,7 +101,7 @@ public class MainController {
     public String wishList (@PathVariable("wishlistId") int wishlistId, HttpSession httpSession, Model model) {
         String htmlPageName;
 
-        Cookie cookie = (Cookie) httpSession.getAttribute("username");
+        Cookie cookie = (Cookie) httpSession.getAttribute("id");
 
         if (cookie != null) {
             htmlPageName = "wishlist";
@@ -121,7 +118,7 @@ public class MainController {
     public String createWish(@PathVariable("wishlistId") int wishlistId,Model model, HttpSession httpSession){
         String htmlPageName;
 
-        Cookie cookie = (Cookie) httpSession.getAttribute("username");
+        Cookie cookie = (Cookie) httpSession.getAttribute("id");
 
         if (cookie != null) {
             model.addAttribute("wishlistId", wishlistId);
@@ -146,7 +143,7 @@ public class MainController {
         model.addAttribute("user", new User());
         String htmlPageName;
 
-        Cookie cookie = (Cookie) httpSession.getAttribute("username");
+        Cookie cookie = (Cookie) httpSession.getAttribute("id");
 
         if (cookie != null) {
             htmlPageName = "redirect:/";
@@ -172,7 +169,7 @@ public class MainController {
     @GetMapping("/addwishlist")
     public String getWishlist(Model model, HttpSession httpSession){
         String htmlPageName;
-        Cookie cookie = (Cookie) httpSession.getAttribute("username");
+        Cookie cookie = (Cookie) httpSession.getAttribute("id");
         model.addAttribute("wishlist", new Wishlist());
 
         if (cookie != null) {

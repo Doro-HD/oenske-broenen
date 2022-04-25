@@ -59,10 +59,18 @@ public class UserRepository {
         }
     }
 
-    public User findUser(String userString){
+    public User findUserById(String id) {
+        return findUser("id", id);
+    }
+
+    public User findUserByUsername(String username) {
+        return findUser("username", username);
+    }
+
+    private User findUser(String field, String userString){
         User myUser = null;
         try {
-            String sql = "SELECT * FROM users WHERE username = " + "\"" + userString + "\"";
+            String sql = "SELECT * FROM users WHERE " + field + " = " + "\"" + userString + "\"";
             ResultSet resultSet = this.jdbcConnector.getStatement().executeQuery(sql);
             while(resultSet.next()) {
                 int id = resultSet.getInt("id");
