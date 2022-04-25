@@ -21,23 +21,25 @@
 
 <div class="content-area">
     <div class="content-area-content">
-    <h1>Dine ønskesedler</h1>
+        <h1>Dine ønskesedler</h1>
 
-    <grid>
-        <ul>
-            <li th:each="wishlist : ${wishlists}" th:class="card_content">
-                <a th:text="${wishlist.name}" th:href="@{/homepage/{id}(id=${wishlist.id})}"></a>
-            </li>
-        </ul>
-    </grid>
+        <grid class="cards">
+            <div th:each="wishlist : ${wishlists}" class="sticky-note">
+                <div class="sticky-text">
+                    <a th:href="@{/homepage/{id}(id=${wishlist.id})}"><h5 th:text="${wishlist.name}">Card title</h5></a>
+                    <p th:text="${wishlist.description}">Some quick example text to build on the card
+                        title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+        </grid>
 
-    <a href="/addwishlist">
-        <button type="button" class="btn btn-outline-danger mt-3 mb-3">Lav Ønskeseddel</button>
-    </a>
+        <a href="/addwishlist">
+            <button type="button" class="btn btn-outline-danger mt-3 mb-3">Lav Ønskeseddel</button>
+        </a>
 
-    <a href="/logout">
-        <button type="button" class="btn btn-outline-danger mt-3 mb-3">Log ud</button>
-    </a>
+        <a href="/logout">
+            <button type="button" class="btn btn-outline-danger mt-3 mb-3">Log ud</button>
+        </a>
     </div>
 </div>
 </body>
