@@ -15,7 +15,8 @@
             <li th:each="wish : ${wishes}" th:text="${wish.name}"></li>
         </ul>
         <div th:if="${#lists.isEmpty(wishes)}">
-            You have no wishes in this wishlist. Click the button below to add a new one!
+            Du har ingen ønsker på denne seddel!<br>
+            Tryk på knappen nedenfor for at indsætte nye ønsker!
 
         </div>
 

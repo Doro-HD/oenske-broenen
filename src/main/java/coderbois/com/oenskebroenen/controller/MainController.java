@@ -3,7 +3,6 @@ package coderbois.com.oenskebroenen.controller;
 import coderbois.com.oenskebroenen.model.User;
 import coderbois.com.oenskebroenen.model.Wish;
 import coderbois.com.oenskebroenen.model.Wishlist;
-import coderbois.com.oenskebroenen.repository.WishlistRepository;
 
 import coderbois.com.oenskebroenen.security.PasswordManager;
 
