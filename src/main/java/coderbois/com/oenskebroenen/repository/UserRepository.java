@@ -60,17 +60,17 @@ public class UserRepository {
     }
 
     public User findUserById(String id) {
-        return findUser("id", id);
+        return findUserWhere("id", id);
     }
 
     public User findUserByUsername(String username) {
-        return findUser("username", username);
+        return findUserWhere("username", username);
     }
 
-    private User findUser(String field, String userString){
+    private User findUserWhere(String field, String userString){
         User myUser = null;
         try {
-            String sql = "SELECT * FROM users WHERE " + field + " = " + "\"" + userString + "\"";
+            String sql = "SELECT * FROM users WHERE " + field + " = \"" + userString + "\"";
             ResultSet resultSet = this.jdbcConnector.getStatement().executeQuery(sql);
             while(resultSet.next()) {
                 int id = resultSet.getInt("id");
