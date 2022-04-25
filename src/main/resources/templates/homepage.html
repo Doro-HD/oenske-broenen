@@ -1,19 +1,44 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Ønskebrønen Forside</title>
+<head th:replace="fragments :: head(title=('Ønskebrønden'))">
 </head>
 <body>
-<h1>Dine ønskesedler</h1>
-            <ul>
-                <li th:each="wishlist : ${wishlists}" th:class="card_content">
-                    <a th:text="${wishlist.name}" th:href="@{/homepage/{id}(id=${wishlist.id})}"></a>
-                </li>
-            </ul>
 
-<a href="/addwishlist">
-    <button type="button" class="btn btn-outline-danger mt-3 mb-3">Lav Ønskeseddel</button>
-</a>
+<div>
+    <header>
+        <div class="wrapper">
+            <a href="/"><img src="/static/logo.png" th:src="@{/logo.png}" alt="logo" class="logo"></a>
+            <nav>
+                <ul>
+                    <li><a href="/">Forside</a></li>
+                    <li><a href="/addwishlist">Opret Ønskeseddel</a></li>
+                    <li><a href="/logout">Log Ud</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+</div>
+
+<div class="content-area">
+    <div class="content-area-content">
+    <h1>Dine ønskesedler</h1>
+
+    <grid>
+        <ul>
+            <li th:each="wishlist : ${wishlists}" th:class="card_content">
+                <a th:text="${wishlist.name}" th:href="@{/homepage/{id}(id=${wishlist.id})}"></a>
+            </li>
+        </ul>
+    </grid>
+
+    <a href="/addwishlist">
+        <button type="button" class="btn btn-outline-danger mt-3 mb-3">Lav Ønskeseddel</button>
+    </a>
+
+    <a href="/logout">
+        <button type="button" class="btn btn-outline-danger mt-3 mb-3">Log ud</button>
+    </a>
+    </div>
+</div>
 </body>
 </html>

@@ -1,13 +1,33 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>wishlist</title>
+<head th:replace="fragments :: head(title=('Ønskebrønden Ønskeseddel'))">
 </head>
 <body>
+
+<div th:replace="fragments :: navbar">
+
+</div>
+
+
+<div class="content-area">
+    <div class="content-area-content">
+        <ul>
+            <li th:each="wish : ${wishes}" th:text="${wish.name}"></li>
+        </ul>
   <ul>
       <li th:each="wish : ${wishes}" th:text="${wish.name}"></li>
   </ul>
-  <a th:href="@{{id}/createWish(id=${wishlistId})}">Tilføj et ny ønske til din seddel<button></button></a>
+  <div th:if="${#lists.isEmpty(wishes)}">
+      You have no wishes in this wishlist. Click the button below to add a new one!
+
+  </div>
+
+        <a th:href="@{{id}/createWish(id=${wishlistId})}">
+            <button class="button btn btn-outline-danger mt-3 mb-3">Tilføj et ny ønske til din seddel</button>
+        </a><br>
+
+        <a href="/homepage">Tilbage til forside</a>
+    </div>
+</div>
 </body>
 </html>

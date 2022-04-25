@@ -3,9 +3,8 @@
 <head th:replace="fragments :: head(title='Ønskebrønden Login')">
 </head>
 <body class="loginbody">
-    <div class="loginbox">
 
-        <img th:src="@{/logo.png}" th:class="logo">
+    <div class="loginbox">
         <img th:src="@{/Avatar.png}" class="avatar">
         <h1>Log Ind</h1>
         <form th:object="${user}" th:action="@{/login}" method="post">

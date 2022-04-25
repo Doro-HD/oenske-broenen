@@ -15,5 +15,20 @@
 </head>
 <body>
 
+<div th:fragment="navbar">
+    <header>
+        <div class="wrapper">
+            <a href="/"><img src="/static/logo.png" th:src="@{/logo.png}" alt="logo" class="logo"></a>
+            <nav>
+                <ul>
+                    <li><a href="/">Forside</a></li>
+                    <li><a href="/addwishlist">Opret Ønskeseddel</a></li>
+                    <li><a href="/logout">Log Ud</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+</div>
+
 </body>
 </html>
