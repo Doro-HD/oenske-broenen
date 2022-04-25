@@ -7,7 +7,12 @@
 <body>
   <ul>
       <li th:each="wish : ${wishes}" th:text="${wish.name}"></li>
+
+
   </ul>
+  <div th:if="${#lists.isEmpty(wishes)}">
+      You have no wishes in this wishlist. Click the button below to add a new one!
+  </div>
   <a th:href="@{{id}/createWish(id=${wishlistId})}">Tilføj et ny ønske til din seddel<button></button></a>
 </body>
 </html>
