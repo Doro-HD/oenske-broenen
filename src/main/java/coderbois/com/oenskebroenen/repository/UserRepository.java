@@ -69,7 +69,6 @@ public class UserRepository {
                 String userName = resultSet.getString("username");
                 String password = resultSet.getString("user_password");
                 myUser = new User(id, userName, password);
-                System.out.println(myUser);
             }
         }catch (Exception e) {
             System.out.println("Error in getting all users.");
