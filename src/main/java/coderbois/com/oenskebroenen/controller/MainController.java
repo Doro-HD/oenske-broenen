@@ -190,14 +190,10 @@ public class MainController {
         return "redirect:homepage";
     }
 
-    @GetMapping("/test")
-    @ResponseBody
-    public String findUser () {
-        WishlistRepository wr = new WishlistRepository();
-        wr.createWishList(new Wishlist(1, "test", "MEGA TEST BASED on AMOGUS 2?!?!?!?!?!?!?!?!?", 11));
-        return "based";
-    }
 
+    public Cookie checkConnection(HttpSession httpSession){
+        return (Cookie) httpSession.getAttribute("id");
+    }
 
 
 
