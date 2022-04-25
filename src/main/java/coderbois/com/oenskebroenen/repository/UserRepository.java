@@ -70,7 +70,7 @@ public class UserRepository {
                 String password = resultSet.getString("user_password");
                 myUser = new User(id, userName, password);
             }
-        }catch (Exception e) {
+        }catch (SQLException e) {
             System.out.println("Error in getting all users.");
             //Todo: remove the print stack trace below when we move to production
             e.printStackTrace();

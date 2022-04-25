@@ -4,6 +4,9 @@ import coderbois.com.oenskebroenen.model.User;
 import coderbois.com.oenskebroenen.model.Wish;
 import coderbois.com.oenskebroenen.model.Wishlist;
 import coderbois.com.oenskebroenen.repository.WishlistRepository;
+
+import coderbois.com.oenskebroenen.security.PasswordManager;
+
 import coderbois.com.oenskebroenen.service.UserService;
 import coderbois.com.oenskebroenen.service.WishService;
 import coderbois.com.oenskebroenen.service.WishlistService;
@@ -54,11 +57,13 @@ public class MainController {
     public String loginPost(@ModelAttribute("user") User user, Model model, HttpSession httpSession){
         User myUser = userService.findUserByUsername(user.getUsername());
         if (myUser != null) {
-            if (myUser.getPassword().equals(user.getPassword())) {
-                Cookie cookieUsername = new Cookie("username", user.getUsername());
-                Cookie cookieUserId = new Cookie("id", String.valueOf(myUser.getId()));
+            PasswordManager passwordManager = new PasswordManager();
+            boolean isPasswordValid = passwordManager.validatePassword(user.getPassword(), myUser.getPassword());
 
-                httpSession.setAttribute("username", cookieUsername);
+            if (isPasswordValid) {
+                Cookie cookie = new Cookie("username", myUser.getUsername());
+                httpSession.setAttribute("username", cookie);
+                Cookie cookieUserId = new Cookie("id", String.valueOf(myUser.getId()));
                 httpSession.setAttribute("id", cookieUserId);
             }
         }
