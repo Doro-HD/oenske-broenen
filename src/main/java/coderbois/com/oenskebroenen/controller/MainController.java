@@ -144,7 +144,7 @@ public class MainController {
         Cookie cookie = (Cookie) httpSession.getAttribute("username");
 
         if (cookie != null) {
-            htmlPageName = "homepage";
+            htmlPageName = "redirect:/";
         } else {
             htmlPageName = "createUser";
         }

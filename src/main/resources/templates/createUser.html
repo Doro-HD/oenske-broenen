@@ -3,9 +3,9 @@
 <head th:replace="fragments :: head(title=('Ønskebrønden Opret Bruger'))">
 </head>
 <body class="createbody">
-
 <div class="loginbox">
 
+    <img th:src="@{/logo.png}" th:class="logo">
     <img th:src="@{/Avatar.png}" class="avatar">
     <h1>Opret Ny Bruger</h1>
 
@@ -17,7 +17,7 @@
         <input th:field="*{password}" name="createPassword" type="password" class="form-control" placeholder="kodeord ...">
 
         <button type="submit" value="submit" class="btn btn-outline-danger mt-3 mb-3">Opret Bruger</button><br>
-        <a href="/login">Log Ind</a>
+        <a href="/login">Log Ind?</a>
     </form>
 </div>
 </body>
