@@ -58,7 +58,6 @@ public class UserRepository {
             e.printStackTrace();
         }
     }
-
     public User findUser(String userString){
         User myUser = null;
         try {
@@ -76,7 +75,5 @@ public class UserRepository {
             e.printStackTrace();
         }
         return myUser;
-
     }
-
 }
