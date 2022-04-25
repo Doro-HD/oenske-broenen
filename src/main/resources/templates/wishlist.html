@@ -3,14 +3,24 @@
 <head th:replace="fragments :: head(title=('Ønskebrønden Ønskeseddel'))">
 </head>
 <body>
-  <ul>
-      <li th:each="wish : ${wishes}" th:text="${wish.name}"></li>
-  </ul>
 
-  <a th:href="@{{id}/createWish(id=${wishlistId})}">
-      <button class="button btn btn-outline-danger mt-3 mb-3">Tilføj et ny ønske til din seddel</button>
-  </a><br>
+<div th:replace="fragments :: navbar">
 
-  <a href="/homepage">Tilbage til forside</a>
+</div>
+
+
+<div class="content-area">
+    <div class="content-area-content">
+        <ul>
+            <li th:each="wish : ${wishes}" th:text="${wish.name}"></li>
+        </ul>
+
+        <a th:href="@{{id}/createWish(id=${wishlistId})}">
+            <button class="button btn btn-outline-danger mt-3 mb-3">Tilføj et ny ønske til din seddel</button>
+        </a><br>
+
+        <a href="/homepage">Tilbage til forside</a>
+    </div>
+</div>
 </body>
 </html>

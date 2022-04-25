@@ -4,16 +4,27 @@
 </head>
 <body>
 
-<h1>Lav din nye ønskeseddel!</h1>
-<form th:object="${wishlist}"  method="post", th:action="@{/addwishlist}">
-    <label class="form-label mt-10">Ønskeseddel Navn</label>
-    <input th:field="*{name}" name="CreateWishlistName" type="text" class="form-control" placeholder="navn på ønskeseddel">
+<div th:replace="fragments :: navbar">
 
-    <label class="form-label">Beskrivelse</label>
-    <input th:field="*{description}" name="createDescription" type="text" class="form-control" placeholder="kort beskrivelse af din ønskeseddel">
+</div>
 
-    <button type="submit" value="submit" class="btn btn-outline-danger mt-3 mb-3">Opret Ønskeseddel</button><br>
-    <a href="/homepage">Tilbage til forside</a>
-</form>
+<div class="content-area">
+    <div class="content-area-content">
+        <h1>Lav din nye ønskeseddel!</h1>
+        <form th:object="${wishlist}" method="post" , th:action="@{/addwishlist}">
+            <label class="form-label mt-10">Ønskeseddel Navn</label>
+            <input th:field="*{name}" name="CreateWishlistName" type="text" class="form-control"
+                   placeholder="navn på ønskeseddel">
+
+            <label class="form-label">Beskrivelse</label>
+            <input th:field="*{description}" name="createDescription" type="text" class="form-control"
+                   placeholder="kort beskrivelse af din ønskeseddel">
+
+            <button type="submit" value="submit" class="btn btn-outline-danger mt-3 mb-3">Opret Ønskeseddel</button>
+            <br>
+            <a href="/homepage">Tilbage til forside</a>
+        </form>
+    </div>
+</div>
 </body>
 </html>
