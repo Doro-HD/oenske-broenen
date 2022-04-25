@@ -4,8 +4,10 @@
 </head>
 <body class="loginbody">
     <div class="loginbox">
+
+        <img th:src="@{/logo.png}" th:class="logo">
         <img th:src="@{/Avatar.png}" class="avatar">
-        <h1>Log Ind Her</h1>
+        <h1>Log Ind</h1>
         <form th:object="${user}" th:action="@{/login}" method="post">
             <label class="form-label mt-10">Brugernavn</label>
             <input th:field="*{username}" name="username" type="text" class="form-control" placeholder="exempel@test.dk ...">

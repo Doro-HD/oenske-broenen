@@ -64,3 +64,9 @@
 .loginbox a:hover {
     color: #ffc107;
 }
+
+.logo {
+    position: absolute;
+    top: -200px;
+    left: -25%;
+}
