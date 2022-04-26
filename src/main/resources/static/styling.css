@@ -174,3 +174,12 @@ nav a:hover {
 .sticky-text a {
     color: black;
 }
+
+.sticky-note:hover {
+    height: 245px;
+    width: 245px;
+}
+
+.sticky-note::before {
+    transition: all ease-in-out 250ms;
+}
