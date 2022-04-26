@@ -1,6 +1,6 @@
 body {
     text-align: center;
-    background: url("well.jpg");
+    background: url("./well.jpg");
     background-attachment: fixed ;
     background-position: center;
     background-repeat: no-repeat;
@@ -10,7 +10,7 @@ body {
 .loginbody {
     margin: 0;
     padding: 0;
-    background: url("well.jpg");
+    background: url("./well.jpg");
     background-size: cover;
     font-family: sans-serif;
 }
@@ -18,7 +18,7 @@ body {
 .createbody {
     margin: 0;
     padding: 0;
-    background: url("well.jpg");
+    background: url("./well.jpg");
     background-size: cover;
     font-family: sans-serif;
 }
@@ -147,7 +147,7 @@ nav a:hover {
 }
 
 .sticky-note {
-    background-image: url("note1.png");
+    background-image: url("./note1.png");
     width: 250px;
     height: 250px;
     background-position: center;
