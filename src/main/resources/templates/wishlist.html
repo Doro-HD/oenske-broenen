@@ -20,9 +20,10 @@
     <div class="content-area-content">
 
         <div th:if="${isUser}">
+            <h5>Tryk på knapper for at kopiere link til nem deling med venner og familie!</h5>
             <button onclick="copyToClipboard()" class="button btn btn-outline-danger mb-3 mt-3">Kopier Link</button>
 
-            <!-- script taget fra google for at have en nem  tilgængelig knap til at kopiere link -->
+            <!-- script taget fra google for at have en nem  tilgængelig knap til at kopiere link til nem deling -->
             <script>
                 function copyToClipboard(text) {
                     var inputc = document.body.appendChild(document.createElement("input"));
@@ -38,13 +39,20 @@
 
         <hr>
 
-        <ul>
-            <li th:each="wish : ${wishes}" th:text="${wish.name}"></li>
-        </ul>
         <div th:if="${#lists.isEmpty(wishes)}">
             Du har ingen ønsker på denne seddel!<br>
             Tryk på knappen nedenfor for at indsætte nye ønsker!
+        </div>
 
+        <div th:each="wish : ${wishes}">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 th:text="${wish.name}" class="card-title"></h5>
+                    <p th:text="${wish.description}" class="card-text"></p>
+                    <a th:href="@{/homepage/{wishlistId}(wishlistId=${wishlist.id})/deleteWish/{wishId}(wishId=${wish.id})}">
+                        <button class="button btn btn-outline-danger mt-6 mb-6">Slet Ønske</button></a>
+                </div>
+            </div>
         </div>
 
         <a th:if="${isCreator}" th:href="@{{id}/createWish(id=${wishlistId})}">
