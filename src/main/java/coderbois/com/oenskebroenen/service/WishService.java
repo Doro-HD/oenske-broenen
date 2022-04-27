@@ -28,4 +28,8 @@ public class WishService {
     public void deleteWishById(int id) {
         this.wishRepository.deleteWishById(id);
     }
+
+    public void deleteWishesByWishlistID(int id){
+        this.wishRepository.deleteWishesByWishlistId(id);
+    }
 }
