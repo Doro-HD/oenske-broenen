@@ -4,9 +4,17 @@
 </head>
 <body>
 
-<div th:replace="fragments :: navbar">
+<div th:if="${isUser}">
+    <div th:replace="fragments :: navbar">
 
+    </div>
 </div>
+<div th:unless="${isUser}">
+    <div th:replace="fragments :: navbarGuest">
+
+    </div>
+</div>
+
 
 
 <div class="content-area">
@@ -20,7 +28,7 @@
 
         </div>
 
-        <a th:href="@{{id}/createWish(id=${wishlistId})}">
+        <a th:if="${isCreator}" th:href="@{{id}/createWish(id=${wishlistId})}">
             <button class="button btn btn-outline-danger mt-3 mb-3">Tilføj et ny ønske til din seddel</button>
         </a><br>
 

@@ -23,6 +23,10 @@ public class WishlistService {
     }
 
     public ArrayList<Wishlist> getUserWishlists(int userId) {
-        return this.wishlistRepository.getUserWishlistsById(userId);
+        return this.wishlistRepository.findWishlistsByUserId(userId);
+    }
+
+    public Wishlist findWishlistByUserIdAndWishlistId(int userId, int wishlistId) {
+        return this.wishlistRepository.findWishlistByUserIdAndWishlistId(userId, wishlistId);
     }
 }

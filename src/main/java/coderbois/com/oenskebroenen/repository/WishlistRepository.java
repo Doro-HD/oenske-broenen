@@ -1,7 +1,6 @@
 package coderbois.com.oenskebroenen.repository;
 
 import coderbois.com.oenskebroenen.model.Wishlist;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
@@ -19,11 +18,27 @@ public class WishlistRepository {
         this.jdbcConnector = new JdbcConnector();
     }
 
-    public ArrayList<Wishlist> getUserWishlistsById(int userId) {
+    public ArrayList<Wishlist> findWishlistsByUserId(int userId) {
+        String SQL = "SELECT * FROM wishlists WHERE user_id = " + userId;
+        return this.findWishlists(SQL);
+    }
+
+    public Wishlist findWishlistByUserIdAndWishlistId(int userId, int wishlistId) {
+        final String SQL = "SELECT * FROM wishlists WHERE user_id = " + userId + " AND id = " + wishlistId;
+        ArrayList<Wishlist> wishlists = this.findWishlists(SQL);
+
+        Wishlist wishlist = null;
+        if (!wishlists.isEmpty()) {
+            wishlist = wishlists.get(0);
+        }
+
+        return wishlist;
+    }
+
+    private ArrayList<Wishlist> findWishlists(String sql) {
         ArrayList<Wishlist> wishlists = new ArrayList<>();
 
         Statement statement = this.jdbcConnector.getStatement();
-        String sql = "SELECT * FROM wishlists WHERE user_id = " + userId;
 
         try {
             ResultSet resultSet = statement.executeQuery(sql);
@@ -31,6 +46,7 @@ public class WishlistRepository {
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("wishlist_name");
                 String description = resultSet.getString("description");
+                int userId = resultSet.getInt("user_id");
 
                 Wishlist wishlist = new Wishlist(id, name, description, userId);
                 wishlists.add(wishlist);
