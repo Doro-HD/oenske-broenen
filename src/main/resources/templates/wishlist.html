@@ -49,8 +49,9 @@
                 <div class="card-body">
                     <h5 th:text="${wish.name}" class="card-title"></h5>
                     <p th:text="${wish.description}" class="card-text"></p>
-                    <a th:href="@{/homepage/{wishlistId}(wishlistId=${wishlist.id})/deleteWish/{wishId}(wishId=${wish.id})}">
-                        <button class="button btn btn-outline-danger mt-6 mb-6">Slet Ønske</button></a>
+                    <form th:if="${isCreator}" method="post" th:action="@{/homepage/{wishlistId}/deleteWish/{wishId}(wishId=${wish.id}, wishlistId=${wish.wishlistId})}">
+                        <button type="submit" class="button btn btn-outline-danger mt-6 mb-6">Slet ønske</button>
+                    </form>
                 </div>
             </div>
         </div>

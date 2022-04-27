@@ -198,14 +198,14 @@ public class MainController {
         return "redirect:homepage";
     }
 
-    @DeleteMapping("/homepage/{wishlistId}/deleteWish/{wishId}")
+    @PostMapping("/homepage/{wishlistId}/deleteWish/{wishId}")
     public String deleteWish(@PathVariable("wishlistId") int wishlistId, @PathVariable("wishId") int wishId) {
         this.wishService.deleteWishById(wishId);
 
         return "redirect:/homepage/" + wishlistId;
     }
 
-    @DeleteMapping("/homepage/{wishlistId}/deleteWishlist")
+    @PostMapping("/homepage/{wishlistId}/deleteWishlist")
     public String deleteWishList(@PathVariable("wishlistId") int wishlistId){
         this.wishService.deleteWishesByWishlistID(wishlistId);
         this.wishlistService.deleteWishlistById(wishlistId);
