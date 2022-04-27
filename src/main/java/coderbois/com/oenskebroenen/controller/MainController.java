@@ -198,6 +198,12 @@ public class MainController {
         return "redirect:homepage";
     }
 
+    @DeleteMapping("/homepage/{wishlistId}/deleteWish/{wishId}")
+    public String deleteWish(@PathVariable("wishlistId") int wishlistId, @PathVariable("wishId") int wishId) {
+        this.wishService.deleteWishById(wishId);
+
+        return "redirect:/homepage/" + wishlistId;
+    }
 
     public Cookie checkConnection(HttpSession httpSession) {
         return (Cookie) httpSession.getAttribute("id");

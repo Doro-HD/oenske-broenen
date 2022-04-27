@@ -24,4 +24,8 @@ public class WishService {
     public ArrayList<Wish> findWishesByWishlistId(int id) {
         return this.wishRepository.findWishesByWishlistId(id);
     }
+
+    public void deleteWishById(int id) {
+        this.wishRepository.deleteWishById(id);
+    }
 }
