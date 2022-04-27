@@ -16,24 +16,25 @@
 </div>
 
 
-
 <div class="content-area">
     <div class="content-area-content">
 
-        <button onclick="copyToClipboard()" class="button btn btn-outline-danger mb-3 mt-3">Kopier Link</button>
+        <div th:if="${isUser}">
+            <button onclick="copyToClipboard()" class="button btn btn-outline-danger mb-3 mt-3">Kopier Link</button>
 
-        <!-- script taget fra google for at have en nem  tilgængelig knap til at kopiere link -->
-        <script>
-            function copyToClipboard(text) {
-                var inputc = document.body.appendChild(document.createElement("input"));
-                inputc.value = window.location.href;
-                inputc.focus();
-                inputc.select();
-                document.execCommand('copy');
-                inputc.parentNode.removeChild(inputc);
-                alert("URL Copied.");
-            }
-        </script>
+            <!-- script taget fra google for at have en nem  tilgængelig knap til at kopiere link -->
+            <script>
+                function copyToClipboard(text) {
+                    var inputc = document.body.appendChild(document.createElement("input"));
+                    inputc.value = window.location.href;
+                    inputc.focus();
+                    inputc.select();
+                    document.execCommand('copy');
+                    inputc.parentNode.removeChild(inputc);
+                    alert("URL Copied.");
+                }
+            </script>
+        </div>
 
         <hr>
 
