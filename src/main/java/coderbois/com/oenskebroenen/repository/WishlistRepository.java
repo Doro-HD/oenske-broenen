@@ -80,4 +80,20 @@ public class WishlistRepository {
     }
 
 
+    public void deleteWishlistById(int id){
+
+        final String SQL = "DELETE FROM wishlists WHERE id = ?";
+
+        PreparedStatement preparedStatement = this.jdbcConnector.getPreparedStatement(SQL);
+
+        try{
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        }catch(SQLException e){
+            System.out.println("Noget gik galt ved sletning af ønskelisten");
+            System.out.println(e);
+        }
+
+    }
+
 }

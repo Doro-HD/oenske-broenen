@@ -29,4 +29,8 @@ public class WishlistService {
     public Wishlist findWishlistByUserIdAndWishlistId(int userId, int wishlistId) {
         return this.wishlistRepository.findWishlistByUserIdAndWishlistId(userId, wishlistId);
     }
+
+    public void deleteWishlistById(int id) {
+        this.wishlistRepository.deleteWishlistById(id);
+    }
 }

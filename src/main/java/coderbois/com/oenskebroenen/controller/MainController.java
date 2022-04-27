@@ -205,6 +205,13 @@ public class MainController {
         return "redirect:/homepage/" + wishlistId;
     }
 
+    @DeleteMapping("/homepage/{wishlistid}/deleteWishlist")
+    public String deleteWishList(@PathVariable("wishlistis") int wishlistId){
+        this.wishlistService.deleteWishlistById(wishlistId);
+
+        return "redirect:/homepage";
+    }
+
     public Cookie checkConnection(HttpSession httpSession) {
         return (Cookie) httpSession.getAttribute("id");
     }
