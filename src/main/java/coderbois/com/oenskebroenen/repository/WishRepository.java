@@ -65,4 +65,22 @@ public class WishRepository {
 
         return wishes;
     }
+
+    public void deleteWishById(int id){
+
+        final String SQL = "DELETE FROM wishes WHERE id = ?";
+        PreparedStatement preparedStatement = this.jdbcConnector.getPreparedStatement(SQL);
+
+
+        try{
+            preparedStatement.setInt(1, id);;
+
+            preparedStatement.executeUpdate();
+
+
+        }catch (SQLException e){
+            System.out.println("Noget gik galt ved sletning af ønsket");
+            System.out.println(e);
+        }
+    }
 }
