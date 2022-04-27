@@ -207,6 +207,7 @@ public class MainController {
 
     @DeleteMapping("/homepage/{wishlistId}/deleteWishlist")
     public String deleteWishList(@PathVariable("wishlistId") int wishlistId){
+        this.wishService.deleteWishesByWishlistID(wishlistId);
         this.wishlistService.deleteWishlistById(wishlistId);
 
         return "redirect:/homepage";

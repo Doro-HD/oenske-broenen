@@ -86,6 +86,8 @@ public class WishlistRepository {
 
         PreparedStatement preparedStatement = this.jdbcConnector.getPreparedStatement(SQL);
 
+
+
         try{
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
