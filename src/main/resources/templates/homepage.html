@@ -49,7 +49,7 @@
 <script th:inline="javascript">
     async function deleteWishlist(wishlistId) {
         const url = 'https://oenske-broenen.herokuapp.com'
-        await fetch(url + '/' + wishlistId + '/deleteWishlist', {method: 'post'})
+        await fetch(url + '/homepage/' + wishlistId + '/deleteWishlist', {method: 'post'})
         //window.location.href = url + '/homepage'
     }
 </script>
