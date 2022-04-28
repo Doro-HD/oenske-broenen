@@ -29,6 +29,7 @@
                     <a th:href="@{/homepage/{id}(id=${wishlist.id})}"><h5 th:text="${wishlist.name}">Card title</h5></a>
                     <p th:text="${wishlist.description}">Some quick example text to build on the card
                         title and make up the bulk of the card's content.</p>
+                    <button class="btn btn-sm btn-outline-danger">X</button>
                 </div>
             </div>
         </grid>
@@ -36,7 +37,7 @@
         <hr>
 
         <a href="/addwishlist">
-            <button type="button" class="btn btn-outline-danger mt-3 mb-3">Lav Ønskeseddel</button>
+            <button type="button" class="btn btn-outline-dark mt-3 mb-3">Lav Ønskeseddel</button>
         </a>
 
         <a href="/logout">

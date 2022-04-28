@@ -5,7 +5,7 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 public class PasswordManager {
 
     public String createHashedPassword(String password) {
-        String salt = BCrypt.gensalt(10);
+        String salt = BCrypt.gensalt(12);
         return BCrypt.hashpw(password, salt);
     }
 

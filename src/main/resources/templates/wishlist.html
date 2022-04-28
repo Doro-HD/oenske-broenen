@@ -21,7 +21,7 @@
 
         <div th:if="${isUser}">
             <h5>Tryk på knapper for at kopiere link til nem deling med venner og familie!</h5>
-            <button onclick="copyToClipboard()" class="button btn btn-outline-danger mb-3 mt-3">Kopier Link</button>
+            <button onclick="copyToClipboard()" class="button btn btn-outline-dark mb-3 mt-3">Kopier Link</button>
 
             <!-- script taget fra google for at have en nem  tilgængelig knap til at kopiere link til nem deling -->
             <script>
@@ -57,7 +57,7 @@
         </div>
 
         <a th:if="${isCreator}" th:href="@{{id}/createWish(id=${wishlistId})}">
-            <button class="button btn btn-outline-danger mt-3 mb-3">Tilføj et ny ønske til din seddel</button>
+            <button class="button btn btn-outline-dark mt-3 mb-3">Tilføj et nyt ønske til din seddel</button>
         </a><br>
 
         <hr>
