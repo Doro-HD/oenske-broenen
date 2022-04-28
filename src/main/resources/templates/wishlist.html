@@ -44,17 +44,20 @@
             Tryk på knappen nedenfor for at indsætte nye ønsker!
         </div>
 
-        <div th:each="wish : ${wishes}">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 th:text="${wish.name}" class="card-title"></h5>
-                    <p th:text="${wish.description}" class="card-text"></p>
-                    <form th:if="${isCreator}" method="post" th:action="@{/homepage/{wishlistId}/deleteWish/{wishId}(wishId=${wish.id}, wishlistId=${wish.wishlistId})}">
-                        <button type="submit" class="button btn btn-outline-danger mt-6 mb-6">Slet ønske</button>
-                    </form>
+        <grid class="cards">
+            <div th:each="wish : ${wishes}">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 th:text="${wish.name}" class="card-title"></h5><br>
+                        <p th:text="${wish.description}" class="card-text"></p>
+                        <form th:if="${isCreator}" method="post"
+                              th:action="@{/homepage/{wishlistId}/deleteWish/{wishId}(wishId=${wish.id}, wishlistId=${wish.wishlistId})}">
+                            <button type="submit" class="button btn btn-outline-danger mt-6 mb-6">Slet ønske</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
+        </grid>
 
         <a th:if="${isCreator}" th:href="@{{id}/createWish(id=${wishlistId})}">
             <button class="button btn btn-outline-dark mt-3 mb-3">Tilføj et nyt ønske til din seddel</button>
