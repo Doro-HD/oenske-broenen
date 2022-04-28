@@ -22,14 +22,14 @@
 <div class="content-area">
     <div class="content-area-content">
         <h1>Dine ønskesedler</h1>
-
         <grid class="cards">
             <div th:each="wishlist : ${wishlists}" class="sticky-note">
                 <div class="sticky-text">
                     <a th:href="@{/homepage/{id}(id=${wishlist.id})}"><h5 th:text="${wishlist.name}">Card title</h5></a>
                     <p th:text="${wishlist.description}">Some quick example text to build on the card
                         title and make up the bulk of the card's content.</p>
-                    <button class="btn btn-sm btn-outline-danger">X</button>
+                    <button class="btn btn-sm btn-outline-danger" th:onclick="deleteWishlist([[${wishlist.id}]])">X
+                    </button>
                 </div>
             </div>
         </grid>
@@ -46,4 +46,10 @@
     </div>
 </div>
 </body>
+<script th:inline="javascript">
+    async function deleteWishlist(wishlistId) {
+        await fetch('http://127.0.0.1:8080/homepage/' + wishlistId + '/deleteWishlist', {method: 'post'})
+        window.location.href = 'http://127.0.0.1:8080/homepage'
+    }
+</script>
 </html>
